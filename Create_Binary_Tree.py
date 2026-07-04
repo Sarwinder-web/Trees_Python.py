@@ -9,5 +9,5 @@ root.left = TreeNode("5")
 root.right = TreeNode("20")
 
 print(root.value)
-print(root.left)
-print(root.right)
+print(root.left.value)
+print(root.right.value)
