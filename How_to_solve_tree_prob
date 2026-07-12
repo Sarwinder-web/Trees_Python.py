@@ -1,0 +1,26 @@
+Whenever you see a tree problem, ask these 3 questions:
+
+1️⃣ What should the recursive function return?
+
+Examples:
+
+Maximum depth → return an integer (depth)
+Number of nodes → return an integer (count)
+Search a value → return True or False
+2️⃣ What is the base case?
+
+Usually:
+
+if node is None:
+    return ...
+3️⃣ How do I combine the left and right answers?
+
+Examples:
+
+Maximum depth:
+max(left, right) + 1
+Count nodes:
+left + right + 1
+Search:
+left or right
+🏆
