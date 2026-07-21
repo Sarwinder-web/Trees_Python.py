@@ -241,11 +241,220 @@ def helper(node):
     return currentHeight , currentBalance   
 
 print(helper(root)) 
+
+# Diameter of a binary tree
+class TreeNode:
+    def __init__(self,value):
+        self.value = value 
+        self.left = None 
+        self.right = None 
+
+root = TreeNode(15)
+root.left = TreeNode(8)
+root.right = TreeNode(25)
+root.left.left = TreeNode(13)
+root.left.right = TreeNode(30)
+root.right.right = TreeNode(35)
+root.right.left = TreeNode(18) 
+
+def helper(node):
+    if node is None:
+        return 0 , 0 
     
+    leftHeight , leftDiameter = helper(node.left)
+    rightHeight , rightDiameter = helper(node.right)
 
+    currentDiameter = max( 
+        leftDiameter, 
+        rightDiameter , 
+        leftHeight + rightHeight
+        )
     
+    currentHeight = max(leftHeight , rightHeight) + 1 
 
+    return currentHeight , currentDiameter 
 
+def diameterOfBinaryTree(root):
+    height, diameter = helper(root)
+    return diameter
 
+print(diameterOfBinaryTree(root))
+
+# Sum of leaf nodes 
+class TreeNode:
+    def __init__(self,value):
+        self.value = value 
+        self.left = None 
+        self.right = None 
+
+root = TreeNode(15)
+root.left = TreeNode(8)
+root.right = TreeNode(25)
+root.left.left = TreeNode(13)
+root.left.right = TreeNode(30)
+root.right.right = TreeNode(35)
+root.right.left = TreeNode(18) 
+
+def helper(node):
+
+    if node is None:
+        return 0 
+    
+    if (
+    node.left and
+    node.left.left is None and
+    node.left.right is None
+):
+        currentSum = node.left.value
+    else:
+        currentSum = 0
         
+    leftSum = helper(node.left)
+    rightSum = helper(node.right)
+
+    return currentSum + leftSum + rightSum
+
+# Binary Tilt Tree 
+
+"""class TreeNode:
+    def __init__(self,value):
+        self.value = value 
+        self.left = None 
+        self.right = None 
+
+root = TreeNode(15)
+root.left = TreeNode(8)
+root.right = TreeNode(25)
+root.left.left = TreeNode(13)
+root.left.right = TreeNode(30)
+root.right.right = TreeNode(35)
+root.right.left = TreeNode(18) 
+
+def helper(node):
+
+    if node is None:
+        return 0 
+    
+    leftSum  = helper(node.left)
+    rightSum  = helper(node.right)
+
+    currentTilt = abs(leftSum - rightSum)
+
+    totalTilt += currentTilt
+
+    return leftSum + rightSum + node.value
+"""
+# Binary Tree Maximum Path Sum 
+
+class TreeNode:
+    def __init__(self,value):
+        self.value = value 
+        self.left = None 
+        self.right = None 
+
+root = TreeNode(15)
+root.left = TreeNode(8)
+root.right = TreeNode(25)
+root.left.left = TreeNode(13)
+root.left.right = TreeNode(30)
+root.right.right = TreeNode(35)
+root.right.left = TreeNode(18) 
+
+def MaxPathSum(root):
+    answer = float("-inf")
+
+    def helper(node):
+        nonlocal answer
+
+        if node is None:
+            return 0 
+    
+        leftGain = max(helper(node.left) , 0)
+        rightGain = max(helper(node.right) , 0)
+
+        answer = max(answer, leftGain + rightGain + node.value)
+
+        return node.value + max(leftGain , rightGain)
+
+# Binary Tree Lowest Common Ancestor
+ 
+class TreeNode:
+    def __init__(self,value):
+        self.value = value 
+        self.left = None 
+        self.right = None 
+
+root = TreeNode(15)
+root.left = TreeNode(8)
+root.right = TreeNode(25)
+root.left.left = TreeNode(13)
+root.left.right = TreeNode(30)
+root.right.right = TreeNode(35)
+root.right.left = TreeNode(18) 
+
+def lowestCommonAncestor(root,p,q):
+
+    def helper(node):
+
+        if node is None:
+            return None 
+    
+        if node == p or node == q:
+            return node 
+        
+        leftCheck = helper(node.left)
+        rightCheck = helper(node.right)
+
+        if leftCheck and rightCheck:
+            return node 
+        
+        if leftCheck and rightCheck == None:
+            return leftCheck
+        
+        if leftCheck == None and rightCheck:
+            return rightCheck
+        
+        if leftCheck == None and rightCheck == None:
+             return None 
+        
+# Binary Tree Right Side View 
+
+class TreeNode:
+    def __init__(self,value):
+        self.value = value 
+        self.left = None 
+        self.right = None 
+
+root = TreeNode(15)
+root.left = TreeNode(8)
+root.right = TreeNode(25)
+root.left.left = TreeNode(13)
+root.left.right = TreeNode(30)
+root.right.right = TreeNode(35)
+root.right.left = TreeNode(18) 
+
+def RightSideView(root):
+
+    answer = []
+
+    def helper(node,level):
+
+        if node is None:
+            return 
+    
+        if level == len(answer): 
+            answer.append(node.value)
+
+        helper(node.right , level + 1)
+        helper(node.left , level + 1 )
+
+        return None 
+
+    answer = []
+
+    helper(root, 0)
+
+    return answer
+    
+    
 
